@@ -68,7 +68,6 @@
 .failed{background-color:#D88A8A;}
 .skipped{background-color:#2DEAEC;}
 .undefined{background-color: #ebcc81;}
-
 table.stats-table {
 color:black;
 border-width: 1px;
@@ -78,7 +77,8 @@ border-color: gray;
 border-collapse: collapse;
 background-color: white;
 }
-table.stats-table th {
+
+    table.stats-table th {
 color:black;
 border-width: 1px;
 padding: 5px;
@@ -87,7 +87,7 @@ border-color: gray;
 background-color: #66CCEE;
 -moz-border-radius: ;
 }
-table.stats-table td {
+    table.stats-table td {
 color:black;
 text-align: center;
 border-width: 1px;
@@ -97,7 +97,6 @@ border-color: gray;
 background-color: white;
 -moz-border-radius: ;
 }
-
 table.data-table {
     color: black;
     border-width: 1px;
@@ -107,7 +106,8 @@ table.data-table {
     border-collapse: collapse;
     background-color: beige;
 }
-table.data-table th {
+
+    table.data-table th {
     color:black;
     border-width: 1px;
     padding: 5px;
@@ -115,7 +115,7 @@ table.data-table th {
     border-color: #d6d6d6;
     background-color: #66CCEE;
 }
-table.data-table td {
+    table.data-table td {
     color:black;
     text-align: center;
     border-width: 1px;
@@ -124,7 +124,6 @@ table.data-table td {
     border-color: #d6d6d6;
     background-color: beige;
 }
-
 .data {
    padding-left:50px;
     padding-bottom: 10px;
@@ -146,6 +145,7 @@ table.data-table td {
     font-family: "Courier New", Courier, monospace;
     font-size: 95%;
 }
+
 </style>
 
 </head>
@@ -173,37 +173,37 @@ table.data-table td {
 	</div>
 
 	<div class="container_12">
-		<div class="grid_12">
+        <div>
+            <table class="stats-table">
+                #if($parallel)
+                    #include("/templates/tableHeaderParallel.vm")
+                #else
+                    #include("/templates/tableHeader.vm")
+                #end
 
-            <div>
-                <table class="stats-table">
+                #set($sf = $feature.getRawName())
+
+                <tr>
+                    <td><a id="stats-$sf" href="$feature.getFileName()">$feature.getRawName()</a></td>
                     #if($parallel)
-                        #include("/templates/tableHeaderParallel.vm")                        
-                    #else
-                        #include("/templates/tableHeader.vm")                        
+                        <td id="device">$feature.getDeviceName()</td>
                     #end
-                    
-                    #set($sf = $feature.getRawName())
+                    <td id="stats-number-scenarios-$sf">$feature.getNumberOfScenarios()</td>
+                    <td id="stats-number-scenarios-passed-$sf">$feature.getNumberOfScenariosPassed()</td>
+                    <td id="stats-number-scenarios-failed-$sf">$feature.getNumberOfScenariosFailed()</td>
+                    <td id="stats-number-steps-$sf">$feature.getNumberOfSteps()</td>
+                    <td id="stats-number-steps-passed-$sf">$feature.getNumberOfPasses()</td>
+                    <td id="stats-number-steps-failed-$sf">$feature.getNumberOfFailures()</td>
+                    <td id="stats-number-steps-skipped-$sf">$feature.getNumberOfSkipped()</td>
+                    <td id="stats-number-steps-pending-$sf">$feature.getNumberOfPending()</td>
+                    <td id="stats-duration-$sf">$feature.getDurationOfSteps()</td>
+                    <td id="stats-status-$sf" style="background-color: $report_status_colour;">$feature.getRawStatus()</td></tr>
 
-                    <tr>
-                        <td><a id="stats-$sf" href="$feature.getFileName()">$feature.getRawName()</a></td>
-                        #if($parallel)
-                          <td id="device">$feature.getDeviceName()</td>
-                        #end
-                        <td id="stats-number-scenarios-$sf">$feature.getNumberOfScenarios()</td>
-                        <td id="stats-number-scenarios-passed-$sf">$feature.getNumberOfScenariosPassed()</td>
-                        <td id="stats-number-scenarios-failed-$sf">$feature.getNumberOfScenariosFailed()</td>
-                        <td id="stats-number-steps-$sf">$feature.getNumberOfSteps()</td>
-                        <td id="stats-number-steps-passed-$sf">$feature.getNumberOfPasses()</td>
-                        <td id="stats-number-steps-failed-$sf">$feature.getNumberOfFailures()</td>
-                        <td id="stats-number-steps-skipped-$sf">$feature.getNumberOfSkipped()</td>
-                        <td id="stats-number-steps-pending-$sf">$feature.getNumberOfPending()</td>
-                        <td id="stats-duration-$sf">$feature.getDurationOfSteps()</td>
-                        <td id="stats-status-$sf" style="background-color: $report_status_colour;">$feature.getRawStatus()</td></tr>
+            </table>
 
-                </table>
+        </div>
 
-            </div>
+		<div class="grid_12" style="width: auto;position:absolute;left:0" >
 
 		<div style="color:black;">
 
@@ -235,14 +235,15 @@ table.data-table td {
             #end
 
 	</div>
+            <div class="container_12">
+                <div class="grid_12 hr"></div>
+                <div class="grid_12 footer">
+                    <p style="position:absolute;bottom:0;left: 0">Cucumber Report Plugin - version: $version - $time_stamp. Generated by Sofist.</p>
+                </div>
+            </div>
 	</div>
 
 
-	<div class="container_12">
-		<div class="grid_12 hr"></div>
-		<div class="grid_12 footer">
-            <p style="text-align:center;">Cucumber-JVM Jenkins Report Plugin - version: $version - $time_stamp</p>
-		</div>
-	</div>
+
 	<div class="clear"></div>
 </body>
