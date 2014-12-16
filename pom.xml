@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.masterthought</groupId>
+    <groupId>br.com.sofist</groupId>
     <artifactId>cucumber-reporting</artifactId>
     <packaging>jar</packaging>
     <version>0.0.24</version>
     <name>cucumber-reporting</name>
-    <url>https://github.com/masterthought/cucumber-reporting</url>
+    <url>https://github.com/otoniel-isidoro-sofist/cucumber-reporting</url>
 
     <repositories>
         <repository>
@@ -29,9 +29,9 @@
     </parent>
 
     <scm>
-        <connection>scm:git:git@github.com:masterthought/cucumber-reporting.git</connection>
-        <developerConnection>scm:git:git@github.com:masterthought/cucumber-reporting.git</developerConnection>
-        <url>git@github.com:masterthought/cucumber-reporting.git</url>
+        <connection>scm:git:git@github.com:otoniel-isidoro-sofist/cucumber-reporting.git</connection>
+        <developerConnection>scm:git:git@github.com:otoniel-isidoro-sofist/cucumber-reporting.git</developerConnection>
+        <url>https://github.com/otoniel-isidoro-sofist/cucumber-reporting</url>
     </scm>
 
     <description>
