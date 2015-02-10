@@ -108,7 +108,7 @@ public class TagObject {
     }
 
     public int getNumberOfPending() {
-        return Util.findStatusCount(getStatuses(), Util.Status.UNDEFINED);
+        return Util.findStatusCount(getStatuses(), Util.Status.UNDEFINED) + Util.findStatusCount(getStatuses(), Util.Status.MISSING) + Util.findStatusCount(getStatuses(), Util.Status.PENDING);
     }
 
     private List<Util.Status> getStatuses() {

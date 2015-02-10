@@ -1,7 +1,6 @@
 package net.masterthought.cucumber;
 
 import com.googlecode.totallylazy.Sequence;
-import com.googlecode.totallylazy.Sequences;
 import net.masterthought.cucumber.json.Artifact;
 import net.masterthought.cucumber.json.Element;
 import net.masterthought.cucumber.json.Feature;
@@ -22,6 +21,7 @@ public class ReportInformation {
     private List<Step> totalSkippedSteps = new ArrayList<Step>();
     private List<Step> totalUndefinedSteps = new ArrayList<Step>();
     private List<Step> totalMissingSteps = new ArrayList<Step>();
+    private List<Step> totalPendingSteps = new ArrayList<Step>();
     private List<Element> numberPassingScenarios = new ArrayList<Element>();
     private List<Element> numberFailingScenarios = new ArrayList<Element>();
     private Long totalDuration = 0l;
@@ -92,7 +92,7 @@ public class ReportInformation {
     }
 
     public int getTotalNumberPendingSteps() {
-        return totalUndefinedSteps.size();
+        return totalUndefinedSteps.size() + totalMissingSteps.size() + totalPendingSteps.size();
     }
 
     public int getTotalNumberMissingSteps() {
@@ -314,6 +314,7 @@ public class ReportInformation {
                 totalSkippedSteps = Util.setStepStatus(totalSkippedSteps, step, stepStatus, Util.Status.SKIPPED);
                 totalUndefinedSteps = Util.setStepStatus(totalUndefinedSteps, step, stepStatus, Util.Status.UNDEFINED);
                 totalMissingSteps = Util.setStepStatus(totalMissingSteps, step, stepStatus, Util.Status.MISSING);
+                totalPendingSteps = Util.setStepStatus(totalPendingSteps, step, stepStatus, Util.Status.PENDING);
                 totalDuration = totalDuration + step.getDuration();
             }
         }

@@ -1,11 +1,10 @@
 package net.masterthought.cucumber.json;
 
-import net.masterthought.cucumber.ReportBuilder;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
-import com.googlecode.totallylazy.Function1;
 import com.googlecode.totallylazy.Sequence;
 import com.googlecode.totallylazy.Sequences;
+import net.masterthought.cucumber.ReportBuilder;
 import net.masterthought.cucumber.util.Util;
 import org.apache.commons.lang.StringUtils;
 
@@ -256,7 +255,7 @@ public class Feature {
         }
 
         public int getNumberOfPending() {
-            return pendingSteps.size();
+            return pendingSteps.size() + missingSteps.size() + undefinedSteps.size() ;
         }
 
         public int getNumberOfSkipped() {

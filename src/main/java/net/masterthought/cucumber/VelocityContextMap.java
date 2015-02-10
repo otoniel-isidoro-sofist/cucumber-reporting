@@ -75,12 +75,12 @@ public final class VelocityContextMap implements Map<String,Object> {
 
     @Override
     public Set<String> keySet() {
-        return new HashSet(Arrays.asList(velocityContext.getKeys()));
+        return new LinkedHashSet(Arrays.asList(velocityContext.getKeys()));
     }
 
     @Override
     public Collection<Object> values() {
-        Collection<Object> result = new HashSet<Object>();
+        Collection<Object> result = new LinkedHashSet<Object>();
         for (String key : keySet()) {
             result.add(velocityContext.get(key));
         }
@@ -89,7 +89,7 @@ public final class VelocityContextMap implements Map<String,Object> {
 
     @Override
     public Set<Entry<String, Object>> entrySet() {
-        Set<Entry<String,Object>> result = new HashSet<Entry<String, Object>>();
+        Set<Entry<String,Object>> result = new LinkedHashSet<Entry<String, Object>>();
         for (String key : keySet()) {
             result.add(new AbstractMap.SimpleEntry<String,Object>(key,velocityContext.get(key)));
         }

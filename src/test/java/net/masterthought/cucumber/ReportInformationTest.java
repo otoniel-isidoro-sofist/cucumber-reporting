@@ -1,9 +1,9 @@
 package net.masterthought.cucumber;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.internal.matchers.IsCollectionContaining.hasItem;
-import static org.junit.internal.matchers.StringContains.containsString;
+import net.masterthought.cucumber.json.Artifact;
+import net.masterthought.cucumber.json.Feature;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,11 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import net.masterthought.cucumber.json.Artifact;
-import net.masterthought.cucumber.json.Feature;
-
-import org.junit.Before;
-import org.junit.Test;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.internal.matchers.IsCollectionContaining.hasItem;
+import static org.junit.internal.matchers.StringContains.containsString;
 
 public class ReportInformationTest {
 
@@ -29,8 +28,8 @@ public class ReportInformationTest {
         ConfigurationOptions.setUndefinedFailsBuild(false);
         List<String> jsonReports = new ArrayList<String>();
         //will work iff the resources are not jarred up, otherwise use IOUtils to copy to a temp file.
-        jsonReports.add(new File(ReportInformationTest.class.getClassLoader().getResource("net/masterthought/cucumber/project1.json").toURI()).getAbsolutePath());
-        jsonReports.add(new File(ReportInformationTest.class.getClassLoader().getResource("net/masterthought/cucumber/project2.json").toURI()).getAbsolutePath());
+        jsonReports.add(new File(ReportInformationTest.class.getClassLoader().getResource("net/masterthought/cucumber/nosteps.json").toURI()).getAbsolutePath());
+        jsonReports.add(new File(ReportInformationTest.class.getClassLoader().getResource("net/masterthought/cucumber/nosteps2.json").toURI()).getAbsolutePath());
         reportParser = new ReportParser(jsonReports);
         reportInformation = new ReportInformation(reportParser.getFeatures());
     }

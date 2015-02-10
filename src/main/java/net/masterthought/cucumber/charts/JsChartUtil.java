@@ -1,50 +1,44 @@
 package net.masterthought.cucumber.charts;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Logger;
-
 import net.masterthought.cucumber.TagObject;
+
+import java.util.*;
+import java.util.logging.Logger;
 
 public class JsChartUtil {
 
     private static Logger logger = Logger.getLogger("net.masterthought.cucumber.charts.jschartutil");
 
     public List<String> orderStepsByValue(int numberTotalPassed, int numberTotalFailed, int numberTotalSkipped, int numberTotalPending) {
-        Map<String, Integer> map = new HashMap<String, Integer>();
+        Map<String, Integer> map = new LinkedHashMap<String, Integer>();
 
-        map.put("#88dd11", numberTotalPassed);
-        map.put("#cc1134", numberTotalFailed);
-        map.put("#88aaff", numberTotalSkipped);
-        map.put("#FBB917", numberTotalPending);
+        map.put("#C5D88A", numberTotalPassed);
+        map.put("#D88A8A", numberTotalFailed);
+        map.put("#2DEAEC", numberTotalSkipped);
+        map.put("#ebcc81", numberTotalPending);
 
         return getKeysSortedByValue(map);
     }
 
     public List<String> orderScenariosByValue(int numberTotalPassed, int numberTotalFailed) {
-        HashMap<String, Integer> map = new HashMap<String, Integer>();
-        map.put("#88dd11", numberTotalPassed);
-        map.put("#cc1134", numberTotalFailed);
+        HashMap<String, Integer> map = new LinkedHashMap<String, Integer>();
+        map.put("#C5D88A", numberTotalPassed);
+        map.put("#D88A8A", numberTotalFailed);
 
         return getKeysSortedByValue(map);
     }
 
     private List<String> getKeysSortedByValue(Map<String, Integer> map) {
         List<Map.Entry<String,Integer>> list = new LinkedList<Map.Entry<String, Integer>>(map.entrySet());
-        Collections.sort(list, new Comparator() {
+       /* Collections.sort(list, new Comparator() {
             @Override
             public int compare(Object o1, Object o2) {
                 return ((Comparable) ((Map.Entry) (o2)).getValue()).compareTo(((Map.Entry) (o1)).getValue());
             }
-        });
+        });*/
 
 
-        List<String> keys = new ArrayList<String>();
+        List<String> keys = new LinkedList<String>();
         for (Map.Entry<String, Integer> entry : list) {
             keys.add(entry.getKey());
         }
