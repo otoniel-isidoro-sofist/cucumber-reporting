@@ -17,7 +17,55 @@
         <link rel="stylesheet" href="CodeMirror-2.33/lib/codemirror.css">
          <script src="CodeMirror-2.33/lib/codemirror.js"></script>
          <script src="CodeMirror-2.33/mode/xml/xml.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script type="text/javascript">
 
+            function nextFailure(){
+                if($('.step-error-message').length>0){
+                    var erroIndex = $('#erroIndex').val();
+                    var element = $('.step-error-message').get(erroIndex);
+                    if( element === undefined || element === null) {
+                        erroIndex = parseInt(0);
+                        element = $('.step-error-message').get(erroIndex);
+                    }
+                    $('html, body').animate({
+                        scrollTop: element.offsetTop
+                    }, 1000);
+
+                    erroIndex=parseInt(erroIndex) + parseInt(1);
+                    $('#erroIndex').attr('value', erroIndex);
+                }
+            }
+
+            function nextScenario(){
+                var items = $("span[class='scenario-keyword']:contains('Scenario')");
+                if(items.length>0){
+                    var scenarioIndex = $('#scenarioIndex').val();
+                    var element = items.get(scenarioIndex);
+                    if( element === undefined || element === null) {
+                        scenarioIndex = parseInt(0);
+                        element = items.get(scenarioIndex);
+                    }
+
+                    $('html, body').animate({
+                        scrollTop: element.offsetTop
+                    }, 1000);
+
+                    scenarioIndex=parseInt(scenarioIndex) + parseInt(1);
+                    $('#scenarioIndex').attr('value', scenarioIndex);
+                }
+            }
+
+            function goToTop(){
+                $('#scenarioIndex').attr('value', 0);
+                $('#erroIndex').attr('value', 0);
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 1000);
+            }
+
+
+        </script>
         <script type="text/javascript">
 
             editorArray = new Array();
@@ -256,4 +304,10 @@ table.data-table {
 
 
 	<div class="clear"></div>
+        <div id="float" style="right:15px; position: fixed; top: 50px; z-index: 9999; color: white;">
+            <spam id="nextScenario" style="cursor:pointer" onclick="nextScenario()">Next Scenario</spam>&nbsp;|&nbsp;
+            <spam id="nextFailure" style="cursor:pointer" onclick="nextFailure()">Next Failure</spam>&nbsp;|&nbsp;
+            <spam id="goToTop" style="cursor:pointer" onclick="goToTop()">Go to Top</spam>
+            <input id="erroIndex" type="hidden" value="0"><input id="scenarioIndex" type="hidden" value="0">
+        </div>
 </body>
