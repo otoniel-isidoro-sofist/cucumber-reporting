@@ -117,7 +117,7 @@ table.data-table td {
                     element = $('.step-error-message').get(erroIndex);
                 }
                 $('html, body').animate({
-                    scrollTop: element.offsetTop
+                    scrollTop: element.offsetTop + ($(window).height()/2) - 80 //80 is the height of fixed header
                 }, 1000);
 
                 erroIndex=parseInt(erroIndex) + parseInt(1);
@@ -136,7 +136,7 @@ table.data-table td {
                 }
 
                 $('html, body').animate({
-                    scrollTop: element.offsetTop
+                    scrollTop: element.offsetTop + ($(window).height()/2) - 80 //80 is the height of fixed header
                 }, 1000);
 
                 scenarioIndex=parseInt(scenarioIndex) + parseInt(1);
